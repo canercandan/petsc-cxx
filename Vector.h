@@ -1,3 +1,21 @@
+// -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
+
+/* This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2
+ * as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+ *
+ * Authors: Caner Candan <caner@candan.fr>, http://caner.candan.fr
+ */
+
 #ifndef _Vector_h
 #define _Vector_h
 
@@ -23,7 +41,7 @@ namespace Petsc
 	    return vec;
 	}
 
-	static void Destroy(Vec& vec) { VecDestroy( vec ); }
+	static void Destroy(const Vec& vec) { VecDestroy( vec ); }
 
 	Vector(Int size = 0) : _vector( Create(size) ) {}
 
@@ -37,7 +55,7 @@ namespace Petsc
 	    	}
 	}
 
-	Vector( Vec& vector ) : _vector( vector ) {}
+	Vector( const Vec& vector ) : _vector( vector ) {}
 
 	Vector( const Vector< Atom >& v ) { *this = v; }
 
@@ -57,7 +75,7 @@ namespace Petsc
 	{
 	    Scalar ret;
 	    Int i = row;
-	    VecGetValues( _vector, row, &i, &ret );
+	    VecGetValues( _vector, 0, &i, &ret );
 	    return (Atom)ret;
 	}
 
@@ -84,27 +102,22 @@ namespace Petsc
 
 	    if ( s <= 0 ) { return; }
 
-	    // std::cout << "[ ";
-	    // std::cout << (Atom)(*this)[0];
-	    // for ( Int i = 1; i < s; ++i )
-	    // 	{
-	    // 	    std::cout << ", " << (*this)[i];
-	    // 	}
-	    // std::cout << " ]" << std::endl;
+	    VecAssemblyBegin(_vector);
+	    VecAssemblyEnd(_vector);
 
 	    VecView( _vector, PETSC_VIEWER_STDOUT_WORLD );
 	}
 
 	std::string className() const { return "Vector"; }
 
-	operator Vec() { return _vector; }
+	operator Vec() const { return _vector; }
 
     private:
 	Vec _vector;
     };
 
     template < typename Atom >
-    Vector< Atom > operator*( Vector< Atom >& a, Vector< Atom >& b )
+    Vector< Atom > operator*( const Vector< Atom >& a, const Vector< Atom >& b )
     {
 	Vector< Atom > c( a.size() );
 	VecPointwiseMult( c, a, b );

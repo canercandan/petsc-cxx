@@ -20,38 +20,27 @@
 
 #include <iostream>
 
-#include <petscsys.h>
-#include <petscvec.h>
-
 #include "Object.h"
 #include "Parser.h"
 #include "Printable.h"
-#include "Vector.h"
+#include "Matrix.h"
 
 using namespace Petsc;
 
 int main(int ac, char** av)
 {
-    Parser parser(ac, av, "How to create a vector.");
+    Parser parser(ac, av, "Matrix-Matrix multiplication.");
 
-    PetscMPIInt rank,size;
+    const Int n = 2;
 
-    MPI_Comm_size( PETSC_COMM_WORLD, &size );
-    MPI_Comm_rank( PETSC_COMM_WORLD, &rank );
+    Matrix< Scalar > A(n, n, 4);
+    Matrix< Scalar > B(n, n, 1);
 
-    PetscPrintf(PETSC_COMM_SELF, "Number of processors = %d, rank = %d\n", size, rank);
+    std::cout << A << B;
 
-    const Int n = 20;
+    Matrix< Scalar > C = A * B;
 
-    Vector< Scalar > x(n, 2);
-    Vector< Scalar > y(n, 2);
-
-    std::cout << x << y;
-
-    Vector< Scalar > w = x * y;
-
-    std::cout << w;
-
+    std::cout << C;
 
     return 0;
 }

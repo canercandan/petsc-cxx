@@ -16,42 +16,18 @@
  * Authors: Caner Candan <caner@candan.fr>, http://caner.candan.fr
  */
 
-// file:///usr/share/doc/petsc3.1-doc/src/vec/vec/examples/tutorials/ex1.c.html
-
-#include <iostream>
-
 #include <petscsys.h>
-#include <petscvec.h>
 
-#include "Object.h"
 #include "Parser.h"
-#include "Printable.h"
-#include "Vector.h"
 
 using namespace Petsc;
 
-int main(int ac, char** av)
+Context::~Context() { PetscFinalize(); }
+
+Parser::Parser(int& ac, char**& av, std::string help /*= ""*/, const char* file /*= 0*/)
 {
-    Parser parser(ac, av, "How to create a vector.");
-
-    PetscMPIInt rank,size;
-
-    MPI_Comm_size( PETSC_COMM_WORLD, &size );
-    MPI_Comm_rank( PETSC_COMM_WORLD, &rank );
-
-    PetscPrintf(PETSC_COMM_SELF, "Number of processors = %d, rank = %d\n", size, rank);
-
-    const Int n = 20;
-
-    Vector< Scalar > x(n, 2);
-    Vector< Scalar > y(n, 2);
-
-    std::cout << x << y;
-
-    Vector< Scalar > w = x * y;
-
-    std::cout << w;
-
-
-    return 0;
+    help += "\n\n";
+    PetscInitialize( &ac, &av, file, help.c_str() );
 }
+
+NoParser::NoParser() { PetscInitializeNoArguments(); }

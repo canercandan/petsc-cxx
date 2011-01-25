@@ -20,13 +20,11 @@
 
 #include <iostream>
 
-#include <petscsys.h>
-#include <petscvec.h>
-
 #include "Object.h"
 #include "Parser.h"
 #include "Printable.h"
 #include "Vector.h"
+#include "Matrix.h"
 
 using namespace Petsc;
 
@@ -34,24 +32,16 @@ int main(int ac, char** av)
 {
     Parser parser(ac, av, "How to create a vector.");
 
-    PetscMPIInt rank,size;
+    const Int n = 4;
 
-    MPI_Comm_size( PETSC_COMM_WORLD, &size );
-    MPI_Comm_rank( PETSC_COMM_WORLD, &rank );
-
-    PetscPrintf(PETSC_COMM_SELF, "Number of processors = %d, rank = %d\n", size, rank);
-
-    const Int n = 20;
-
+    Matrix< Scalar > A(n, n, 4);
     Vector< Scalar > x(n, 2);
-    Vector< Scalar > y(n, 2);
 
-    std::cout << x << y;
+    std::cout << A << x;
 
-    Vector< Scalar > w = x * y;
+    Vector< Scalar > y = A * x;
 
-    std::cout << w;
-
+    std::cout << y;
 
     return 0;
 }

@@ -10,19 +10,22 @@ ENDIF()
 
 INCLUDE(${CMAKE_SOURCE_DIR}/CMake/FindPETSc.cmake)
 #INCLUDE(${CMAKE_SOURCE_DIR}/CMake/FindSLEPc.cmake) # doesnot work yet!
-FIND_PACKAGE(Boost 1.33.0)
+#FIND_PACKAGE(Boost 1.33.0)
 
 INCLUDE_DIRECTORIES(
   ${PETSC_INCLUDES}
-  ${Boost_INCLUDE_DIRS}
+  #${Boost_INCLUDE_DIRS}
   ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-LINK_DIRECTORIES(${Boost_LIBRARY_DIRS})
+LINK_DIRECTORIES(
+  #${Boost_LIBRARY_DIRS}
+  )
 
 SET(COMMON_SOURCES
   Printable.cpp
   Persistent.cpp
+  Parser.cpp
   )
 
 SET(SOURCES
@@ -31,10 +34,17 @@ SET(SOURCES
   t-create_vector
   t-create_vector_cxx
   t-create_vector_in_scope
+  t-matrix-vector
+  t-matrix-matrix
+  t-matrix-matrix-matrix
   )
 
 FOREACH(current ${SOURCES})
   ADD_EXECUTABLE(${current} ${current}.cpp ${COMMON_SOURCES})
   ADD_TEST(${current} ${current})
-  TARGET_LINK_LIBRARIES(${current} ${PETSC_LIBRARIES} ${Boost_LIBRARIES})
+  TARGET_LINK_LIBRARIES(
+    ${current}
+    ${PETSC_LIBRARIES}
+    #${Boost_LIBRARIES}
+    )
 ENDFOREACH()
