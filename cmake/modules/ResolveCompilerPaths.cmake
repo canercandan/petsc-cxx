@@ -38,7 +38,7 @@
 #
 #  assuming both directories exist.
 #  Note: as currently implemented, the -I/string will be picked up mistakenly (cry, cry)
-
+ 
 macro (RESOLVE_LIBRARIES LIBS LINK_LINE)
   string (REGEX MATCHALL "((-L|-l|-Wl)([^\" ]+|\"[^\"]+\")|/[^\" ]+(a|so|dll))" _all_tokens "${LINK_LINE}")
   set (_libs_found)
@@ -75,7 +75,7 @@ macro (RESOLVE_LIBRARIES LIBS LINK_LINE)
   endif (_libs_found)
   set (${LIBS} "${_libs_found}")
 endmacro (RESOLVE_LIBRARIES)
-
+ 
 macro (RESOLVE_INCLUDES INCS COMPILE_LINE)
   string (REGEX MATCHALL "-I([^\" ]+|\"[^\"]+\")" _all_tokens "${COMPILE_LINE}")
   set (_incs_found)
@@ -91,3 +91,4 @@ macro (RESOLVE_INCLUDES INCS COMPILE_LINE)
   list (REMOVE_DUPLICATES _incs_found)
   set (${INCS} "${_incs_found}")
 endmacro (RESOLVE_INCLUDES)
+ 

@@ -24,12 +24,12 @@
 # MULTIPASS_C_SOURCE_RUNS (Name INCLUDES LIBRARIES SOURCE RUNS)
 #  Always runs the given test, use this when you need to re-run tests
 #  because parent variables have made old cache entries stale.
-
+ 
 macro (FIND_PACKAGE_MULTIPASS _name _current)
   string (TOUPPER ${_name} _NAME)
   set (_args ${ARGV})
   list (REMOVE_AT _args 0 1)
-
+ 
   set (_states_current "YES")
   list (GET _args 0 _cmd)
   if (_cmd STREQUAL "STATES")
@@ -46,13 +46,13 @@ macro (FIND_PACKAGE_MULTIPASS _name _current)
       list (GET _args 0 _state)
     endwhile (_state AND NOT _state STREQUAL "DEPENDENTS")
   endif (_cmd STREQUAL "STATES")
-
+ 
   set (_stored ${_NAME}_CURRENT)
   if (NOT ${_stored})
     set (${_stored} "YES" CACHE BOOL "Is the configuration for ${_name} current?  Set to \"NO\" to reconfigure." FORCE)
     set (_states_current "NO")
   endif (NOT ${_stored})
-
+ 
   set (${_current} ${_states_current})
   if (NOT ${_current} AND PACKAGE_MULTIPASS_${_name}_CALLED)
     message (STATUS "Clearing ${_name} dependent variables")
@@ -68,8 +68,8 @@ macro (FIND_PACKAGE_MULTIPASS _name _current)
   endif ()
   set (PACKAGE_MULTIPASS_${name}_CALLED YES CACHE INTERNAL "Private" FORCE)
 endmacro (FIND_PACKAGE_MULTIPASS)
-
-
+ 
+ 
 macro (MULTIPASS_C_SOURCE_RUNS includes libraries source runs)
   include (CheckCSourceRuns)
   # This is a ridiculous hack.  CHECK_C_SOURCE_* thinks that if the

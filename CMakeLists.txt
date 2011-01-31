@@ -1,50 +1,90 @@
-# http://code.google.com/p/eigentools/source/browse/trunk/CMake/?r=2
-# https://github.com/jedbrown/cmake-modules/blob/master/FindPETSc.cmake
+######################################################################################
+### 1) Set the application properties
+######################################################################################
+
+# Checks cmake version compatibility
 CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
 
-PROJECT(petsc-wrapper)
+PROJECT(petsc-cxx)
 
-IF (UNIX)
-  SET( CMAKE_C_FLAGS "-fPIC -Wall -Wansi -Werror -Wwrite-strings -Wno-strict-aliasing ${CMAKE_CXX_FLAGS}")
-ENDIF()
+SET(PROJECT_VERSION_MAJOR 1)
+SET(PROJECT_VERSION_MINOR 0)
+SET(PROJECT_VERSION_PATCH 0)
+SET(PROJECT_VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}")
 
-INCLUDE(${CMAKE_SOURCE_DIR}/CMake/FindPETSc.cmake)
-#INCLUDE(${CMAKE_SOURCE_DIR}/CMake/FindSLEPc.cmake) # doesnot work yet!
-#FIND_PACKAGE(Boost 1.33.0)
+######################################################################################
+
+
+######################################################################################
+### 2) Include useful features
+######################################################################################
+
+SET(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules)
+
+FIND_PACKAGE(PETSc REQUIRED)
 
 INCLUDE_DIRECTORIES(
   ${PETSC_INCLUDES}
-  #${Boost_INCLUDE_DIRS}
-  ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-LINK_DIRECTORIES(
-  #${Boost_LIBRARY_DIRS}
+######################################################################################
+
+
+######################################################################################
+### 3) Include header files path
+######################################################################################
+
+INCLUDE_DIRECTORIES(
+  ${CMAKE_CURRENT_SOURCE_DIR}/src
   )
 
-SET(COMMON_SOURCES
-  Printable.cpp
-  Persistent.cpp
-  Parser.cpp
-  )
+######################################################################################
 
-SET(SOURCES
-  t-hello
-  t-synchronized_hello
-  t-create_vector
-  t-create_vector_cxx
-  t-create_vector_in_scope
-  t-matrix-vector
-  t-matrix-matrix
-  t-matrix-matrix-matrix
-  )
 
-FOREACH(current ${SOURCES})
-  ADD_EXECUTABLE(${current} ${current}.cpp ${COMMON_SOURCES})
-  ADD_TEST(${current} ${current})
-  TARGET_LINK_LIBRARIES(
-    ${current}
-    ${PETSC_LIBRARIES}
-    #${Boost_LIBRARIES}
-    )
-ENDFOREACH()
+######################################################################################
+### 4) Set compiler definitions
+######################################################################################
+
+IF(UNIX)
+  # enable warnings
+  ADD_DEFINITIONS( -Wall -W -Wextra )
+  # ADD_DEFINITIONS( -Weffc++)
+  # ADD_DEFINITIONS( -g3 )
+ENDIF()
+
+######################################################################################
+
+
+######################################################################################
+### 5) Prepare some variables for CMAKE usage
+######################################################################################
+
+SET(SAMPLE_SRCS)
+
+######################################################################################
+
+
+######################################################################################
+### 6) Now where we go ?
+######################################################################################
+
+ADD_SUBDIRECTORY(src)
+ADD_SUBDIRECTORY(application)
+ADD_SUBDIRECTORY(test)
+ADD_SUBDIRECTORY(doc)
+
+######################################################################################
+
+
+######################################################################################
+### 7) Create executable, link libraries and prepare target
+######################################################################################
+
+SET(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib)
+
+LINK_DIRECTORIES(${LIBRARY_OUTPUT_PATH})
+
+ADD_LIBRARY(${PROJECT_NAME} STATIC ${SAMPLE_SRCS})
+INSTALL(TARGETS ${PROJECT_NAME} ARCHIVE DESTINATION lib COMPONENT libraries)
+
+######################################################################################
