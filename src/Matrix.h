@@ -113,7 +113,7 @@ namespace Petsc
 	    const Int nr = nrows();
 	    const Int nc = ncols();
 
-	    std::cout << "size: " << nr << "x" << nc << std::endl;
+	    os << "size: " << nr << "x" << nc << std::endl;
 
 	    if ( nr <= 0 && nc <= 0 ) { return; }
 

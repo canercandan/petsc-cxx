@@ -98,7 +98,7 @@ namespace Petsc
 	{
 	    const Int s = size();
 
-	    std::cout << "size: " << s << std::endl;
+	    os << "size: " << s << std::endl;
 
 	    if ( s <= 0 ) { return; }
 
