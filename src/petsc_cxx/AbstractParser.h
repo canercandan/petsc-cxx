@@ -16,40 +16,21 @@
  * Authors: Caner Candan <caner@candan.fr>, http://caner.candan.fr
  */
 
-#ifndef _Parser_h
-#define _Parser_h
+#ifndef _AbstractParser_h_
+#define _AbstractParser_h_
 
-#include <string>
-
-#include "AbstractParser.h"
+#include "Object.h"
 
 namespace petsc_cxx
 {
-    class Parser : public AbstractParser
+    class AbstractParser : public Object
     {
     public:
-	Parser(int& ac, char**& av, std::string help = "", char* file = 0);
+	virtual ~AbstractParser(){}
 
-	void create() const;
-	void destroy() const;
-
-	std::string className() const { return "Parser"; }
-
-    private:
-	int& _ac;
-	char**& _av;
-	std::string _help;
-	char* _file;
-    };
-
-    class NoParser : public AbstractParser
-    {
-    public:
-	void create() const;
-	void destroy() const;
-
-	std::string className() const { return "NoParser"; }
+	virtual void create() const = 0;
+	virtual void destroy() const = 0;
     };
 }
 
-#endif // !_Parser_h
+#endif // !_AbstractParser_h_
