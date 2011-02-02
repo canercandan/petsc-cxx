@@ -22,29 +22,46 @@
  */
 //-----------------------------------------------------------------------------
 
-#ifdef _MSC_VER
-// to avoid long name warnings
-#pragma warning(disable:4786)
-#endif 
+#ifndef PRINTABLE_H
+#define PRINTABLE_H
 
 //-----------------------------------------------------------------------------
-// Printable.cpp
-//-----------------------------------------------------------------------------
 
-#include <Printable.h>
+#include <iostream>  // std::istream, std::ostream
+#include <string> // para std::string
 
-namespace Petsc
+namespace petsc_cxx
 {
 
-    //-----------------------------------------------------------------------------
-    //Implementation of these objects
-    //-----------------------------------------------------------------------------
+    /*
+      This functionality was separated from Object, since it makes no sense to print
+      some objects (for instance, a #Factory# or a random number generator.
+    */
 
-    std::ostream & operator << ( std::ostream& _os, const Printable& _o ) {
-	_o.printOn(_os);
-	return _os;
-    }
+    /**
+       Base class for objects that can print themselves
+       (#printOn#). Besides, this file defines the standard output for all the objects;
+       if the objects define printOn there's no need to define "operator<<".
+
+       @ingroup Core
+    */
+    class Printable
+    {
+    public:
+	/// Virtual dtor. They are needed in virtual class hierarchies.
+	virtual ~Printable() {}
+
+	/**
+	 * Write object. It's called printOn since it prints the object on a stream.
+	 * @param _os A std::ostream.
+	 */
+	virtual void printOn(std::ostream& _os) const = 0;
+    };
 
     //-----------------------------------------------------------------------------
+    ///Standard output for all objects in the library hierarchy
+    std::ostream & operator << ( std::ostream& _os, const Printable& _o );
 
 }
+
+#endif

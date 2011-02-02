@@ -16,16 +16,23 @@
  * Authors: Caner Candan <caner@candan.fr>, http://caner.candan.fr
  */
 
-#ifndef _Petsc_h
-#define _Petsc_h
+#ifndef _petsc_cxx_
+#define _petsc_cxx_
 
-// C++ binding for Petsc
-namespace Petsc
-{
-    typedef PetscScalar		Scalar;
-    typedef PetscInt		Int;
-    typedef PetscReal		Real;
-    typedef PetscTruth		Truth;
-};
+#include "Petsc.h"
 
-#endif // !_Petsc_h
+#include "Object.h"
+#include "Persistent.h"
+#include "Printable.h"
+
+#include "Context.h"
+#include "Parser.h"
+
+#include "Vector.h"
+#include "Matrix.h"
+
+#endif // !_petsc_cxx_
+
+// Local Variables:
+// mode: C++
+// End:

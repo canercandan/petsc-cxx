@@ -16,30 +16,18 @@
  * Authors: Caner Candan <caner@candan.fr>, http://caner.candan.fr
  */
 
-#ifndef _Parser_h
-#define _Parser_h
+#ifndef _Petsc_h
+#define _Petsc_h
 
-#include <string>
+#include <petscsys.h>
 
-namespace Petsc
+// C++ binding for Petsc
+namespace petsc_cxx
 {
-    class Context
-    {
-    public:
-	~Context();
-    };
+    typedef PetscScalar		Scalar;
+    typedef PetscInt		Int;
+    typedef PetscReal		Real;
+    typedef PetscTruth		Truth;
+};
 
-    class Parser : public Context
-    {
-    public:
-	Parser(int& ac, char**& av, std::string help = "", const char* file = 0);
-    };
-
-    class NoParser : public Context
-    {
-    public:
-	NoParser();
-    };
-}
-
-#endif // !_Parser_h
+#endif // !_Petsc_h

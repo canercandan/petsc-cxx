@@ -19,14 +19,13 @@
 #ifndef _Vector_h
 #define _Vector_h
 
-#include <petscsys.h>
 #include <petscvec.h>
 
 #include "Object.h"
 #include "Printable.h"
 #include "Petsc.h"
 
-namespace Petsc
+namespace petsc_cxx
 {
     template < typename Atom >
     class Vector : public Object, public Printable

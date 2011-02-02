@@ -19,7 +19,6 @@
 #ifndef _Matrix_h
 #define _Matrix_h
 
-#include <petscsys.h>
 #include <petscmat.h>
 
 #include "Object.h"
@@ -27,7 +26,7 @@
 #include "Petsc.h"
 #include "Vector.h"
 
-namespace Petsc
+namespace petsc_cxx
 {
     template < typename Atom >
     class Matrix : public Object, public Printable

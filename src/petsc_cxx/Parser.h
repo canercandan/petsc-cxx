@@ -16,34 +16,49 @@
  * Authors: Caner Candan <caner@candan.fr>, http://caner.candan.fr
  */
 
-// file:///usr/share/doc/petsc3.1-doc/src/vec/vec/examples/tutorials/ex1.c.html
+#ifndef _Parser_h
+#define _Parser_h
 
-#include <petsc_cxx/petsc_cxx>
+#include <string>
 
-using namespace petsc_cxx;
+#include "Object.h"
 
-int main(int ac, char** av)
+namespace petsc_cxx
 {
-    Parser parser(ac, av, "How to create a vector.");
-    Context context(parser);
+    class AbstractParser : public Object
+    {
+    public:
+	virtual ~AbstractParser(){}
 
-    PetscMPIInt rank,size;
+	virtual void create() const = 0;
+	virtual void destroy() const = 0;
+    };
 
-    MPI_Comm_size( PETSC_COMM_WORLD, &size );
-    MPI_Comm_rank( PETSC_COMM_WORLD, &rank );
+    class Parser : public AbstractParser
+    {
+    public:
+	Parser(int& ac, char**& av, std::string help = "", char* file = 0);
 
-    PetscPrintf(PETSC_COMM_SELF, "Number of processors = %d, rank = %d\n", size, rank);
+	void create() const;
+	void destroy() const;
 
-    const Int n = 20;
+	std::string className() const { return "Parser"; }
 
-    Vector< Scalar > x(n, 2);
-    Vector< Scalar > y(n, 2);
+    private:
+	int& _ac;
+	char**& _av;
+	std::string _help;
+	char* _file;
+    };
 
-    std::cout << x << y;
+    class NoParser : public AbstractParser
+    {
+    public:
+	void create() const;
+	void destroy() const;
 
-    Vector< Scalar > w = x * y;
-
-    std::cout << w;
-
-    return 0;
+	std::string className() const { return "NoParser"; }
+    };
 }
+
+#endif // !_Parser_h

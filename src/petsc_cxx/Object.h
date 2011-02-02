@@ -29,7 +29,7 @@
 
 #include <string>		// std::string
 
-namespace Petsc
+namespace petsc_cxx
 {
 
     /*

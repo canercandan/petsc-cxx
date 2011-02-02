@@ -20,14 +20,12 @@
 
 #include "Parser.h"
 
-using namespace Petsc;
+using namespace petsc_cxx;
 
-Context::~Context() { PetscFinalize(); }
+Parser::Parser(int& ac, char**& av, std::string help /*= ""*/, char* file /*= 0*/) : _ac(ac), _av(av), _help(help + "\n\n"), _file(file) {}
 
-Parser::Parser(int& ac, char**& av, std::string help /*= ""*/, const char* file /*= 0*/)
-{
-    help += "\n\n";
-    PetscInitialize( &ac, &av, file, help.c_str() );
-}
+void Parser::create() const { PetscInitialize( &_ac, &_av, _file, _help.c_str() ); }
+void Parser::destroy() const { PetscFinalize(); }
 
-NoParser::NoParser() { PetscInitializeNoArguments(); }
+void NoParser::create() const { PetscInitializeNoArguments(); }
+void NoParser::destroy() const { PetscInitializeNoArguments(); }

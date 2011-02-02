@@ -16,34 +16,25 @@
  * Authors: Caner Candan <caner@candan.fr>, http://caner.candan.fr
  */
 
-// file:///usr/share/doc/petsc3.1-doc/src/vec/vec/examples/tutorials/ex1.c.html
+#ifndef _Context_h
+#define _Context_h
 
-#include <petsc_cxx/petsc_cxx>
+#include "Object.h"
+#include "Parser.h"
 
-using namespace petsc_cxx;
-
-int main(int ac, char** av)
+namespace petsc_cxx
 {
-    Parser parser(ac, av, "How to create a vector.");
-    Context context(parser);
+    class Context : public Object
+    {
+    public:
+	Context( const AbstractParser& parser );
+	~Context();
 
-    PetscMPIInt rank,size;
+	std::string className() const { return "Context"; }
 
-    MPI_Comm_size( PETSC_COMM_WORLD, &size );
-    MPI_Comm_rank( PETSC_COMM_WORLD, &rank );
-
-    PetscPrintf(PETSC_COMM_SELF, "Number of processors = %d, rank = %d\n", size, rank);
-
-    const Int n = 20;
-
-    Vector< Scalar > x(n, 2);
-    Vector< Scalar > y(n, 2);
-
-    std::cout << x << y;
-
-    Vector< Scalar > w = x * y;
-
-    std::cout << w;
-
-    return 0;
+    private:
+	const AbstractParser& _parser;
+    };
 }
+
+#endif // !_Context_h

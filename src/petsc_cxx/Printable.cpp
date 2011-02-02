@@ -1,9 +1,8 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
-
-// Persistent.h
-// (c) GeNeura Team, 1999
+// Printable.h
+// (c) GeNeura Team, 1998
 /* 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -28,16 +27,24 @@
 #pragma warning(disable:4786)
 #endif 
 
-#include <Persistent.h>
+//-----------------------------------------------------------------------------
+// Printable.cpp
+//-----------------------------------------------------------------------------
 
-namespace Petsc
+#include <Printable.h>
+
+namespace petsc_cxx
 {
 
+    //-----------------------------------------------------------------------------
     //Implementation of these objects
+    //-----------------------------------------------------------------------------
 
-    std::istream & operator >> ( std::istream& _is, Persistent& _o ) {
-	_o.readFrom(_is);
-	return _is;
+    std::ostream & operator << ( std::ostream& _os, const Printable& _o ) {
+	_o.printOn(_os);
+	return _os;
     }
+
+    //-----------------------------------------------------------------------------
 
 }

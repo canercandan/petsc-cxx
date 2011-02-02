@@ -1,8 +1,9 @@
 // -*- mode: c++; c-indent-level: 4; c++-member-init-indent: 8; comment-column: 35; -*-
 
 //-----------------------------------------------------------------------------
-// Printable.h
-// (c) GeNeura Team, 1998
+
+// Persistent.h
+// (c) GeNeura Team, 1999
 /* 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -22,46 +23,47 @@
  */
 //-----------------------------------------------------------------------------
 
-#ifndef PRINTABLE_H
-#define PRINTABLE_H
+#ifndef PERSISTENT_H
+#define PERSISTENT_H
 
-//-----------------------------------------------------------------------------
 
 #include <iostream>  // std::istream, std::ostream
-#include <string> // para std::string
+#include <string>    // para std::string
 
-namespace Petsc
+#include "Printable.h"
+
+namespace petsc_cxx
 {
 
-    /*
-      This functionality was separated from Object, since it makes no sense to print
-      some objects (for instance, a #Factory# or a random number generator.
+    /**
+       @addtogroup Core
+       @{
     */
 
     /**
-       Base class for objects that can print themselves
-       (#printOn#). Besides, this file defines the standard output for all the objects;
-       if the objects define printOn there's no need to define "operator<<".
-
-       @ingroup Core
+       An persistent object that knows how to write (through functions inherited from
+       #Printable#) and read itself
     */
-    class Printable
+    class Persistent: public Printable
     {
     public:
 	/// Virtual dtor. They are needed in virtual class hierarchies.
-	virtual ~Printable() {}
-
+	virtual ~Persistent() {}
+  
 	/**
-	 * Write object. It's called printOn since it prints the object on a stream.
-	 * @param _os A std::ostream.
+	 * Read object.
+	 * @param _is A std::istream.
+	 * @throw runtime_std::exception If a valid object can't be read.
 	 */
-	virtual void printOn(std::ostream& _os) const = 0;
+	virtual void readFrom(std::istream& _is) = 0;
+  
     };
 
-    //-----------------------------------------------------------------------------
-    ///Standard output for all objects in the library hierarchy
-    std::ostream & operator << ( std::ostream& _os, const Printable& _o );
+    ///Standard input for all objects in the EO hierarchy
+    std::istream & operator >> ( std::istream& _is, Persistent& _o );
 
 }
 
 #endif
+
+/** @} */

@@ -5,7 +5,7 @@
 # Checks cmake version compatibility
 CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
 
-PROJECT(petsc-cxx)
+PROJECT(petsc_cxx)
 
 SET(PROJECT_VERSION_MAJOR 0)
 SET(PROJECT_VERSION_MINOR 1)
@@ -36,6 +36,7 @@ INCLUDE_DIRECTORIES(
 
 INCLUDE_DIRECTORIES(
   ${CMAKE_CURRENT_SOURCE_DIR}/src
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/${PROJECT_NAME}
   )
 
 ######################################################################################

@@ -23,47 +23,21 @@
  */
 //-----------------------------------------------------------------------------
 
-#ifndef PERSISTENT_H
-#define PERSISTENT_H
+#ifdef _MSC_VER
+// to avoid long name warnings
+#pragma warning(disable:4786)
+#endif 
 
+#include <Persistent.h>
 
-#include <iostream>  // std::istream, std::ostream
-#include <string>    // para std::string
-
-#include "Printable.h"
-
-namespace Petsc
+namespace petsc_cxx
 {
 
-    /**
-       @addtogroup Core
-       @{
-    */
+    //Implementation of these objects
 
-    /**
-       An persistent object that knows how to write (through functions inherited from
-       #Printable#) and read itself
-    */
-    class Persistent: public Printable
-    {
-    public:
-	/// Virtual dtor. They are needed in virtual class hierarchies.
-	virtual ~Persistent() {}
-  
-	/**
-	 * Read object.
-	 * @param _is A std::istream.
-	 * @throw runtime_std::exception If a valid object can't be read.
-	 */
-	virtual void readFrom(std::istream& _is) = 0;
-  
-    };
-
-    ///Standard input for all objects in the EO hierarchy
-    std::istream & operator >> ( std::istream& _is, Persistent& _o );
+    std::istream & operator >> ( std::istream& _is, Persistent& _o ) {
+	_o.readFrom(_is);
+	return _is;
+    }
 
 }
-
-#endif
-
-/** @} */

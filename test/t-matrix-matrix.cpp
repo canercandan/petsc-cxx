@@ -18,18 +18,14 @@
 
 // file:///usr/share/doc/petsc3.1-doc/src/vec/vec/examples/tutorials/ex1.c.html
 
-#include <iostream>
+#include <petsc_cxx/petsc_cxx>
 
-#include "Object.h"
-#include "Parser.h"
-#include "Printable.h"
-#include "Matrix.h"
-
-using namespace Petsc;
+using namespace petsc_cxx;
 
 int main(int ac, char** av)
 {
     Parser parser(ac, av, "Matrix-Matrix multiplication.");
+    Context context(parser);
 
     const Int n = 2;
 
