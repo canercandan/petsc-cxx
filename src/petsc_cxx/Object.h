@@ -22,8 +22,8 @@
  */
 //-----------------------------------------------------------------------------
 
-#ifndef OBJECT_H
-#define OBJECT_H
+#ifndef _petsc_cxx_Object_h_
+#define _petsc_cxx_Object_h_
 
 //-----------------------------------------------------------------------------
 
@@ -73,4 +73,4 @@ namespace petsc_cxx
 
 }
 
-#endif
+#endif // !_petsc_cxx_Object_h_

@@ -23,8 +23,8 @@
  */
 //-----------------------------------------------------------------------------
 
-#ifndef PERSISTENT_H
-#define PERSISTENT_H
+#ifndef _petsc_cxx_Persistent_h_
+#define _petsc_cxx_Persistent_h_
 
 
 #include <iostream>  // std::istream, std::ostream
@@ -64,6 +64,6 @@ namespace petsc_cxx
 
 }
 
-#endif
+#endif // !_petsc_cxx_Persistent_h_
 
 /** @} */

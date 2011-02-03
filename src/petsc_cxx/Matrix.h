@@ -16,8 +16,8 @@
  * Authors: Caner Candan <caner@candan.fr>, http://caner.candan.fr
  */
 
-#ifndef _Matrix_h
-#define _Matrix_h
+#ifndef _petsc_cxx_Matrix_h
+#define _petsc_cxx_Matrix_h
 
 #include <petscmat.h>
 
@@ -155,4 +155,4 @@ namespace petsc_cxx
     }
 }
 
-#endif // !_Matrix_h
+#endif // !_petsc_cxx_Matrix_h

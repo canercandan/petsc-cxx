@@ -16,8 +16,8 @@
  * Authors: Caner Candan <caner@candan.fr>, http://caner.candan.fr
  */
 
-#ifndef _Parser_h
-#define _Parser_h
+#ifndef _petsc_cxx_Parser_h
+#define _petsc_cxx_Parser_h
 
 #include <string>
 
@@ -52,4 +52,4 @@ namespace petsc_cxx
     };
 }
 
-#endif // !_Parser_h
+#endif // !_petsc_cxx_Parser_h

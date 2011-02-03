@@ -18,14 +18,11 @@
 
 #include "Context.h"
 
-using namespace petsc_cxx;
-
-Context::Context( const AbstractParser& parser ) : _parser(parser)
+namespace petsc_cxx
 {
-    _parser.create();
-}
 
-Context::~Context()
-{
-    _parser.destroy();
+    Context::Context( const AbstractParser& parser ) : _parser(parser) { _parser.create(); }
+
+    Context::~Context() { _parser.destroy(); }
+
 }

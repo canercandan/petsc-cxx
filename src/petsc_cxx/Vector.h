@@ -16,8 +16,8 @@
  * Authors: Caner Candan <caner@candan.fr>, http://caner.candan.fr
  */
 
-#ifndef _Vector_h
-#define _Vector_h
+#ifndef _petsc_cxx_Vector_h
+#define _petsc_cxx_Vector_h
 
 #include <petscvec.h>
 
@@ -124,4 +124,4 @@ namespace petsc_cxx
     }
 }
 
-#endif // !_Vector_h
+#endif // !_petsc_cxx_Vector_h

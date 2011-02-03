@@ -16,8 +16,8 @@
  * Authors: Caner Candan <caner@candan.fr>, http://caner.candan.fr
  */
 
-#ifndef _AbstractParser_h_
-#define _AbstractParser_h_
+#ifndef _petsc_cxx_AbstractParser_h_
+#define _petsc_cxx_AbstractParser_h_
 
 #include "Object.h"
 
@@ -33,4 +33,4 @@ namespace petsc_cxx
     };
 }
 
-#endif // !_AbstractParser_h_
+#endif // !_petsc_cxx_AbstractParser_h_

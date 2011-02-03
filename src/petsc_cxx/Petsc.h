@@ -16,8 +16,8 @@
  * Authors: Caner Candan <caner@candan.fr>, http://caner.candan.fr
  */
 
-#ifndef _Petsc_h
-#define _Petsc_h
+#ifndef _petsc_cxx_Petsc_h
+#define _petsc_cxx_Petsc_h
 
 #include <petscsys.h>
 
@@ -30,4 +30,4 @@ namespace petsc_cxx
     typedef PetscTruth		Truth;
 };
 
-#endif // !_Petsc_h
+#endif // !_petsc_cxx_Petsc_h

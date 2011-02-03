@@ -22,8 +22,8 @@
  */
 //-----------------------------------------------------------------------------
 
-#ifndef PRINTABLE_H
-#define PRINTABLE_H
+#ifndef _petsc_cxx_Printable_h_
+#define _petsc_cxx_Printable_h_
 
 //-----------------------------------------------------------------------------
 
@@ -64,4 +64,4 @@ namespace petsc_cxx
 
 }
 
-#endif
+#endif // !_petsc_cxx_Printable_h_

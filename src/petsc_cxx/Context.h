@@ -16,8 +16,8 @@
  * Authors: Caner Candan <caner@candan.fr>, http://caner.candan.fr
  */
 
-#ifndef _Context_h
-#define _Context_h
+#ifndef _petsc_cxx_Context_h
+#define _petsc_cxx_Context_h
 
 #include "Object.h"
 #include "Parser.h"
@@ -37,4 +37,4 @@ namespace petsc_cxx
     };
 }
 
-#endif // !_Context_h
+#endif // !_petsc_cxx_Context_h
