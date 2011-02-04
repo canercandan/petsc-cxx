@@ -38,5 +38,10 @@ int main(int ac, char** av)
 
     std::cout << y;
 
+    MultiplyMatrixVector< Scalar > mult;
+    Vector< Scalar > w = mult( A, x );
+
+    std::cout << y;
+
     return 0;
 }

@@ -16,33 +16,32 @@
  * Authors: Caner Candan <caner@candan.fr>, http://caner.candan.fr
  */
 
-#ifndef _petsc_cxx_
-#define _petsc_cxx_
+#ifndef _petsc_cxx_Multiply_h
+#define _petsc_cxx_Multiply_h
 
-#include "Petsc.h"
-
-#include "Object.h"
-#include "Persistent.h"
-#include "Printable.h"
-
-#include "Context.h"
-#include "Parser.h"
-
-#include "Vector.h"
-#include "Matrix.h"
-
-#include "FunctorBase.h"
-#include "F.h"
-#include "UF.h"
-#include "BF.h"
-#include "ConstF.h"
-#include "ConstUF.h"
 #include "ConstBF.h"
+#include "Matrix.h"
+#include "Vector.h"
 
-#include "Multiply.h"
+namespace petsc_cxx
+{
 
-#endif // !_petsc_cxx_
+    /* here's the matrix-matrix multiplication resulting to a new matrix */
+    template < typename Atom >
+    class MultiplyMatrix : public ConstBF< Matrix< Atom >, Matrix< Atom >, Matrix< Atom > >
+    {
+    public:
+	Matrix< Atom > operator()( const Matrix< Atom >& a, const Matrix< Atom >& b) const { return a * b; }
+    };
 
-// Local Variables:
-// mode: C++
-// End:
+    /* here's the matrix-vector multiplication resulting to a new vector */
+    template < typename Atom >
+    class MultiplyMatrixVector : public ConstBF< Matrix< Atom >, Vector< Atom >, Vector< Atom > >
+    {
+    public:
+	Vector< Atom > operator()( const Matrix< Atom >& a, const Vector< Atom >& b) const { return a * b; }
+    };
+
+}
+
+#endif // !_petsc_cxx_Multiply_h
