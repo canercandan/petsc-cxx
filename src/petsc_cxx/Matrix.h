@@ -83,6 +83,16 @@ namespace petsc_cxx
 	    return (Atom)ret;
 	}
 
+	// TODO:
+	// Scalar operator()( Int row, Int col ) const
+	// {
+	//     Int ncols;
+	//     const Int* cols;
+	//     const Scalar* ret;
+	//     MatGetValue( _matrix, row, &ncols, &cols, &ret );
+	//     return (Atom)ret;
+	// }
+
 	void add( Int row, const Atom& value ) { MatSetValue( _matrix, row, 1, (Scalar)value, ADD_VALUES ); }
 	void insert( Int row, Int col, const Atom& value ) { MatSetValue( _matrix, row, col, (Scalar)value, INSERT_VALUES ); }
 
