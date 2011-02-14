@@ -24,12 +24,12 @@
  */
 //-----------------------------------------------------------------------------
 
-#ifndef _petsc_cxx_ConstBF_h
-#define _petsc_cxx_ConstBF_h
+#ifndef _linear_algebra_ConstBF_h
+#define _linear_algebra_ConstBF_h
 
 #include "FunctorBase.h"
 
-namespace petsc_cxx
+namespace linear_algebra
 {
 
     /**
@@ -40,7 +40,7 @@ namespace petsc_cxx
        result_type
     **/
     template <class A1, class A2, class R>
-    class ConstBF : public FunctorBase, public std::binary_function<A1, A2, R>
+    class ConstBF : public FunctorBase
     {
     public :
         /// virtual dtor here so there is no need to define it in derived classes
@@ -73,4 +73,4 @@ namespace petsc_cxx
 
 }
 
-#endif // !_petsc_cxx_ConstBF_h
+#endif // !_linear_algebra_ConstBF_h
