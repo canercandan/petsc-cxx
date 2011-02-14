@@ -62,6 +62,8 @@ namespace petsc_cxx
 	struct unary_function_tag {};
 	/// tag to identify a binary function in compile time function selection @see functor_category
 	struct binary_function_tag {};
+	/// tag to identify a tertiary function in compile time function selection @see functor_category
+	struct tertiary_function_tag {};
     };
     /** @example t-Functor.cpp
      */

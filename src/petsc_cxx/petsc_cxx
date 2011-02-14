@@ -35,11 +35,19 @@
 #include "F.h"
 #include "UF.h"
 #include "BF.h"
+#include "TF.h"
 #include "ConstF.h"
 #include "ConstUF.h"
 #include "ConstBF.h"
+#include "ConstTF.h"
 
-#include "Multiply.h"
+#include "BO.h"
+#include "MultiplyMatVec.h"
+#include "AdditionMatrix.h"
+#include "Dot.h"
+
+#include "BinarySolver.h"
+#include "KSPSolver.h"
 
 #endif // !_petsc_cxx_
 

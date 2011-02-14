@@ -25,7 +25,7 @@ namespace petsc_cxx
 {
 
     /* here's the solver base class */
-    template < A1, A2, R >
+    template < typename A1, typename A2, typename R >
     class BinarySolver : public ConstBF< A1, A2, R > {};
 
 }

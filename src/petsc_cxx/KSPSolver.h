@@ -30,24 +30,23 @@ namespace petsc_cxx
 {
 
     template < typename Atom >
-    class KSPSolver : public BinarySolver< Matrix< Atom >, Vector< Atom >, Vector< Atom >, public Printable
+    class KSPSolver : public BO< Matrix< Atom >, Vector< Atom >, Vector< Atom > >, public Printable
     {
     public:
 	KSPSolver( MPI_Comm comm = PETSC_COMM_WORLD, MatStructure flag = DIFFERENT_NONZERO_PATTERN )
+	    : _flag( flag )
 	    {
 		KSPCreate( comm, &_solver );
-		KSPSetTolerences( _solver, 1.e-7, PETSC_DEFAULT, PETSC_DEFAULT, PETSC_DEFAULT );
+		//KSPSetTolerences( _solver, 1.e-7, PETSC_DEFAULT, PETSC_DEFAULT, PETSC_DEFAULT );
 		KSPSetFromOptions( _solver );
 	    }
 
 	~KSPSolver() { KSPDestroy( _solver ); }
 
-	virtual Vector< Atom > operator( const Matrix< Atom >& A, const Vector< Atom >& b )() const
+	virtual void operator()( const Matrix< Atom >& A, const Vector< Atom >& x, Vector< Atom >& b )
 	{
-	    KSPSetOperators( _solver, A, A, flag );
-	    Vector< Atom > x;
-	    KSPSolve( _solver, b, x );
-	    return x;
+	    KSPSetOperators( _solver, A, A, _flag );
+	    KSPSolve( _solver, x, b );
 	}
 
 	void printOn(std::ostream& os) const
@@ -57,6 +56,7 @@ namespace petsc_cxx
 
     private:
 	KSP _solver;
+	MatStructure _flag;
     };
 
 }
