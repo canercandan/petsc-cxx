@@ -23,12 +23,12 @@
  */
 //-----------------------------------------------------------------------------
 
-#ifndef _linear_algebra_TF_h
-#define _linear_algebra_TF_h
+#ifndef _petsc_cxx_TF_h
+#define _petsc_cxx_TF_h
 
 #include "FunctorBase.h"
 
-namespace linear_algebra
+namespace petsc_cxx
 {
 
     /**
@@ -72,4 +72,4 @@ namespace linear_algebra
 
 }
 
-#endif // !_linear_algebra_TF_h
+#endif // !_petsc_cxx_TF_h

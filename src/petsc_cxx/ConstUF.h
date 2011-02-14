@@ -24,12 +24,12 @@
  */
 //-----------------------------------------------------------------------------
 
-#ifndef _linear_algebra_ConstUF_h
-#define _linear_algebra_ConstUF_h
+#ifndef _petsc_cxx_ConstUF_h
+#define _petsc_cxx_ConstUF_h
 
 #include "FunctorBase.h"
 
-namespace linear_algebra
+namespace petsc_cxx
 {
 
     /**
@@ -70,4 +70,4 @@ namespace linear_algebra
 
 }
 
-#endif // !_linear_algebra_ConstUF_h
+#endif // !_petsc_cxx_ConstUF_h
