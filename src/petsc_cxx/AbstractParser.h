@@ -19,11 +19,11 @@
 #ifndef _petsc_cxx_AbstractParser_h_
 #define _petsc_cxx_AbstractParser_h_
 
-#include "Object.h"
+#include "core_library/Object.h"
 
 namespace petsc_cxx
 {
-    class AbstractParser : public Object
+    class AbstractParser : public core_library::Object
     {
     public:
 	virtual ~AbstractParser(){}

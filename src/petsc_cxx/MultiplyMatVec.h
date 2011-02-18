@@ -20,14 +20,15 @@
 #ifndef _petsc_cxx_MultiplyMatVec_h
 #define _petsc_cxx_MultiplyMatVec_h
 
-#include "BO.h"
+#include "core_library/BO.h"
+
 #include "Vector.h"
 #include "Matrix.h"
 
 namespace petsc_cxx
 {
     template < typename Atom >
-    class MultiplyMatVec : public BO< Matrix< Atom >, Vector< Atom >, Vector< Atom > >
+    class MultiplyMatVec : public core_library::BO< Matrix< Atom >, Vector< Atom >, Vector< Atom > >
     {
     public:
 	void operator()( const Matrix< Atom >& A, const Vector< Atom >& x, Vector< Atom >& b )

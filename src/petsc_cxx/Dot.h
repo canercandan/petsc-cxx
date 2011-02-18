@@ -20,13 +20,14 @@
 #ifndef _petsc_cxx_Dot_h
 #define _petsc_cxx_Dot_h
 
-#include "BO.h"
+#include "core_library/BO.h"
+
 #include "Vector.h"
 
 namespace petsc_cxx
 {
     template < typename Atom >
-    class Dot : public BO< Vector< Atom >, Vector< Atom >, Atom >
+    class Dot : public core_library::BO< Vector< Atom >, Vector< Atom >, Atom >
     {
     public:
 	void operator()( const Vector< Atom >& a, const Vector< Atom >& b, Atom& dot )

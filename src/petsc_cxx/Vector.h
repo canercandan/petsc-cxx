@@ -21,14 +21,15 @@
 
 #include <petscvec.h>
 
-#include "Object.h"
-#include "Printable.h"
+#include "core_library/Object.h"
+#include "core_library/Printable.h"
+
 #include "Petsc.h"
 
 namespace petsc_cxx
 {
     template < typename Atom >
-    class Vector : public Object, public Printable
+    class Vector : public core_library::Object, public core_library::Printable
     {
     public:
 	static Vec Create(Int size, MPI_Comm comm = PETSC_COMM_WORLD)

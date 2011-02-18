@@ -21,15 +21,16 @@
 
 #include <petscmat.h>
 
-#include "Object.h"
-#include "Printable.h"
+#include "core_library/Object.h"
+#include "core_library/Printable.h"
+
 #include "Petsc.h"
 #include "Vector.h"
 
 namespace petsc_cxx
 {
     template < typename Atom >
-    class Matrix : public Object, public Printable
+    class Matrix : public core_library::Object, public core_library::Printable
     {
     public:
 	static Mat Create(Int nrows, Int ncols, MPI_Comm comm = PETSC_COMM_WORLD)

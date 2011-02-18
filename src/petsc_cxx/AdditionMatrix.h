@@ -20,13 +20,14 @@
 #ifndef _petsc_cxx_AdditionMatrix_h
 #define _petsc_cxx_AdditionMatrix_h
 
-#include "BO.h"
+#include "core_library/BO.h"
+
 #include "Matrix.h"
 
 namespace petsc_cxx
 {
     template < typename Atom >
-    class AdditionMatrix : public BO< Matrix< Atom >, Matrix< Atom >, Matrix< Atom > >
+    class AdditionMatrix : public core_library::BO< Matrix< Atom >, Matrix< Atom >, Matrix< Atom > >
     {
     public:
 	void operator()( const Matrix< Atom >& A, const Matrix< Atom >& B, Matrix< Atom >& C )

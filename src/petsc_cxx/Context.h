@@ -19,12 +19,13 @@
 #ifndef _petsc_cxx_Context_h
 #define _petsc_cxx_Context_h
 
-#include "Object.h"
+#include "core_library/Object.h"
+
 #include "Parser.h"
 
 namespace petsc_cxx
 {
-    class Context : public Object
+    class Context : public core_library::Object
     {
     public:
 	Context( const AbstractParser& parser );

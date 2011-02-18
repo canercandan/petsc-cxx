@@ -24,13 +24,14 @@
 #include "BinarySolver.h"
 #include "Matrix.h"
 #include "Vector.h"
-#include "Printable.h"
+
+#include "core_library/Printable.h"
 
 namespace petsc_cxx
 {
 
     template < typename Atom >
-    class KSPSolver : public BO< Matrix< Atom >, Vector< Atom >, Vector< Atom > >, public Printable
+    class KSPSolver : public core_library::BO< Matrix< Atom >, Vector< Atom >, Vector< Atom > >, public core_library::Printable
     {
     public:
 	KSPSolver( MPI_Comm comm = PETSC_COMM_WORLD, MatStructure flag = DIFFERENT_NONZERO_PATTERN )

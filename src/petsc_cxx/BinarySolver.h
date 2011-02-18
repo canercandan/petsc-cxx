@@ -19,14 +19,14 @@
 #ifndef _petsc_cxx_BinarySolver_h
 #define _petsc_cxx_BinarySolver_h
 
-#include "ConstBF.h"
+#include "core_library/ConstBF.h"
 
 namespace petsc_cxx
 {
 
     /* here's the solver base class */
     template < typename A1, typename A2, typename R >
-    class BinarySolver : public ConstBF< A1, A2, R > {};
+    class BinarySolver : public core_library::ConstBF< A1, A2, R > {};
 
 }
 

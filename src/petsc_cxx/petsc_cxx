@@ -19,11 +19,9 @@
 #ifndef _petsc_cxx_
 #define _petsc_cxx_
 
-#include "Petsc.h"
+#include <core_library/core_library>
 
-#include "Object.h"
-#include "Persistent.h"
-#include "Printable.h"
+#include "Petsc.h"
 
 #include "Context.h"
 #include "Parser.h"
@@ -31,17 +29,6 @@
 #include "Vector.h"
 #include "Matrix.h"
 
-#include "FunctorBase.h"
-#include "F.h"
-#include "UF.h"
-#include "BF.h"
-#include "TF.h"
-#include "ConstF.h"
-#include "ConstUF.h"
-#include "ConstBF.h"
-#include "ConstTF.h"
-
-#include "BO.h"
 #include "MultiplyMatVec.h"
 #include "AdditionMatrix.h"
 #include "Dot.h"
