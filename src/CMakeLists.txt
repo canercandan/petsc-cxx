@@ -2,7 +2,7 @@
 ### 1) Where do we go now ?!?
 ######################################################################################
 
-ADD_SUBDIRECTORY(petsc_cxx)
+ADD_SUBDIRECTORY(${PROJECT_NAME})
 SET(SAMPLE_SRCS ${SAMPLE_SRCS} PARENT_SCOPE)
 
 ######################################################################################
