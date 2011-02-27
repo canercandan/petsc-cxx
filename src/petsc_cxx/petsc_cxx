@@ -33,7 +33,6 @@
 #include "AdditionMatrix.h"
 #include "Dot.h"
 
-#include "BinarySolver.h"
 #include "KSPSolver.h"
 
 #endif // !_petsc_cxx_
