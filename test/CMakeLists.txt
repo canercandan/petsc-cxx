@@ -12,7 +12,7 @@ SET(SOURCES
   t-create_vector
   t-create_vector_cxx
   t-create_vector_in_scope
-  #t-matrix-vector # deprecated
+  t-matrix-vector
   #t-matrix-matrix # deprecated
   #t-matrix-matrix-matrix # deprecated
   )

@@ -31,17 +31,16 @@ int main(int ac, char** av)
 
     Matrix< Scalar > A(n, n, 4);
     Vector< Scalar > x(n, 2);
+    Vector< Scalar > b(n);
 
     std::cout << A << x;
 
-    Vector< Scalar > y = A * x;
+    KSPSolver< Scalar > ksp;
+    ksp(A,x,b);
 
-    std::cout << y;
+    std::cout << b;
 
-    MultiplyMatrixVector< Scalar > mult;
-    Vector< Scalar > w = mult( A, x );
-
-    std::cout << y;
+    std::cout << ksp;
 
     return 0;
 }

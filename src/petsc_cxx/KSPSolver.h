@@ -21,11 +21,11 @@
 
 #include <petscksp.h>
 
-#include "BinarySolver.h"
+#include <core_library/Printable.h>
+#include <core_library/BO.h>
+
 #include "Matrix.h"
 #include "Vector.h"
-
-#include "core_library/Printable.h"
 
 namespace petsc_cxx
 {
@@ -46,11 +46,14 @@ namespace petsc_cxx
 
 	virtual void operator()( const Matrix< Atom >& A, const Vector< Atom >& x, Vector< Atom >& b )
 	{
+	    if ( b.size() != x.size() ) { b.resize( x.size() ); }
 	    KSPSetOperators( _solver, A, A, _flag );
 	    KSPSolve( _solver, x, b );
 	}
 
-	void printOn(std::ostream& os) const
+	operator KSP() const { return _solver; }
+
+	void printOn(std::ostream&) const
 	{
 	    KSPView( _solver, PETSC_VIEWER_STDOUT_WORLD );
 	}
