@@ -1,1 +1,12 @@
 non-official PETSc binding for C++
+
+How do we build petsc-cxx ?
+---------------------------
+
+1) You have to first download the core-library project which is used by petsc-cxx at https://github.com/canercandan/core-library
+2) Then make a copy of the file install.cmake-dist in renaming it by install.cmake
+3) Edit this file and at the line "SET(CORE_LIBRARY_DIR "<<CORE_LIBRARY_DIR>>")", replace <<CORE_LIBRARY_DIR>> by the path folder of core-library.
+4) Build the project core-library in calling its script "./build_gcc_linux_release"
+5) Then build the project petsc-cxx in calling its script "./build_gcc_linux_release"
+
+You can have a look in the directory "release/test", all the test files binaries should be there.
